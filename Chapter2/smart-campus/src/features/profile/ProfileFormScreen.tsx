@@ -13,33 +13,69 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { IconButton } from '@/src/components/IconButton';
 import { PrimaryButton } from '@/src/components/PrimaryButton';
-import { SecondaryButton } from '@/src/components/SecondaryButton';
-
-type ProfileFormValues = {
-  fullName: string;
-  studentId: string;
-  email: string;
-  program: string;
-  summary: string;
-};
+import {
+  hasProfileFormErrors,
+  ProfileFormValues,
+  validateProfileForm,
+} from '@/src/features/profile/validation';
 
 const initialValues: ProfileFormValues = {
   fullName: 'Nguyễn Minh Anh',
-  studentId: 'SC2026301',
+  studentId: 'SC-2026-0301',
   email: 'minhanh@student.smartcampus.edu',
   program: 'Mobile Programming',
   summary: '',
 };
 
+const initialTouchedState: Record<keyof ProfileFormValues, boolean> = {
+  fullName: false,
+  studentId: false,
+  email: false,
+  program: false,
+  summary: false,
+};
+
 export function ProfileFormScreen() {
-  const [isKeyboardSafe, setIsKeyboardSafe] = useState(true);
   const [values, setValues] = useState(initialValues);
+  const [touched, setTouched] = useState(initialTouchedState);
+  const [submitted, setSubmitted] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const errors = validateProfileForm(values);
 
   const updateField = (field: keyof ProfileFormValues, value: string) => {
+    setSaved(false);
     setValues((currentValues) => ({
       ...currentValues,
       [field]: value,
     }));
+  };
+
+  const markTouched = (field: keyof ProfileFormValues) => {
+    setTouched((currentTouched) => ({
+      ...currentTouched,
+      [field]: true,
+    }));
+  };
+
+  const submitProfile = () => {
+    setSubmitted(true);
+
+    if (saved || hasProfileFormErrors(errors)) {
+      return;
+    }
+
+    setSaved(true);
+  };
+
+  const formProps = {
+    errors,
+    onBlur: markTouched,
+    onChange: updateField,
+    onSubmit: submitProfile,
+    saved,
+    submitted,
+    touched,
+    values,
   };
 
   return (
@@ -53,77 +89,79 @@ export function ProfileFormScreen() {
         <Text style={styles.headerTitle}>Student Profile Form</Text>
       </View>
 
-      <View style={styles.modeSwitcher}>
-        <SecondaryButton
-          label="Cấu trúc dễ bị che"
-          onPress={() => setIsKeyboardSafe(false)}
-          style={!isKeyboardSafe && styles.activeModeButton}
-        />
-        <SecondaryButton
-          label="Cấu trúc an toàn"
-          onPress={() => setIsKeyboardSafe(true)}
-          style={isKeyboardSafe && styles.activeModeButton}
-        />
-      </View>
-
-      {isKeyboardSafe ? (
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={0}
-          style={styles.keyboardSafeArea}>
-          <ScrollView
-            contentContainerStyle={styles.keyboardSafeContent}
-            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}>
-            <ProfileFormFields values={values} onChange={updateField} />
-          </ScrollView>
-        </KeyboardAvoidingView>
-      ) : (
-        <View style={styles.fixedContent}>
-          <ProfileFormFields values={values} onChange={updateField} />
-        </View>
-      )}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
+        style={styles.keyboardSafeArea}>
+        <ScrollView
+          contentContainerStyle={styles.keyboardSafeContent}
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}>
+          <ProfileFormFields {...formProps} />
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
 function ProfileFormFields({
+  errors,
+  onBlur,
   onChange,
+  onSubmit,
+  saved,
+  submitted,
+  touched,
   values,
 }: {
+  errors: Partial<Record<keyof ProfileFormValues, string>>;
+  onBlur: (field: keyof ProfileFormValues) => void;
   onChange: (field: keyof ProfileFormValues, value: string) => void;
+  onSubmit: () => void;
+  saved: boolean;
+  submitted: boolean;
+  touched: Record<keyof ProfileFormValues, boolean>;
   values: ProfileFormValues;
 }) {
-  const summaryIsShort = values.summary.trim().length < 20;
+  const getError = (field: keyof ProfileFormValues) =>
+    touched[field] || submitted ? errors[field] : undefined;
 
   return (
     <View style={styles.form}>
       <Field
         autoCapitalize="words"
+        error={getError('fullName')}
         label="Full Name"
+        onBlur={() => onBlur('fullName')}
         onChangeText={(value) => onChange('fullName', value)}
         returnKeyType="next"
         value={values.fullName}
       />
       <Field
         autoCapitalize="characters"
+        error={getError('studentId')}
         label="Student ID"
+        onBlur={() => onBlur('studentId')}
         onChangeText={(value) => onChange('studentId', value)}
         returnKeyType="next"
         value={values.studentId}
       />
       <Field
         autoCapitalize="none"
+        error={getError('email')}
         keyboardType="email-address"
         label="Email"
+        onBlur={() => onBlur('email')}
         onChangeText={(value) => onChange('email', value)}
         returnKeyType="next"
         value={values.email}
       />
       <Field
         autoCapitalize="words"
+        error={getError('program')}
         label="Program"
+        onBlur={() => onBlur('program')}
         onChangeText={(value) => onChange('program', value)}
         returnKeyType="next"
         value={values.program}
@@ -133,23 +171,23 @@ function ProfileFormFields({
         <TextInput
           accessibilityLabel="Profile Summary"
           multiline
+          onBlur={() => onBlur('summary')}
           onChangeText={(value) => onChange('summary', value)}
           placeholder="Viết mục tiêu học tập, kỹ năng mobile và kế hoạch hoàn thành môn học"
           placeholderTextColor="#6B7280"
           returnKeyType="done"
-          style={[styles.input, styles.summaryInput]}
+          style={[styles.input, styles.summaryInput, getError('summary') && styles.inputError]}
           textAlignVertical="top"
           value={values.summary}
         />
-        {summaryIsShort ? (
-          <Text style={styles.errorText}>Profile Summary cần ít nhất 20 ký tự để dễ đánh giá.</Text>
-        ) : null}
+        {getError('summary') ? <Text style={styles.errorText}>{getError('summary')}</Text> : null}
       </View>
+      {saved ? <Text style={styles.successText}>Profile saved successfully.</Text> : null}
       <PrimaryButton
-        disabled={summaryIsShort}
+        disabled={saved}
         iconName="check-circle"
-        label="Lưu hồ sơ sinh viên"
-        onPress={() => undefined}
+        label={saved ? 'Hồ sơ đã được lưu' : 'Lưu hồ sơ sinh viên'}
+        onPress={onSubmit}
       />
     </View>
   );
@@ -157,8 +195,10 @@ function ProfileFormFields({
 
 type FieldProps = {
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  error?: string;
   keyboardType?: 'default' | 'email-address';
   label: string;
+  onBlur: () => void;
   onChangeText: (value: string) => void;
   returnKeyType?: 'done' | 'next';
   value: string;
@@ -166,8 +206,10 @@ type FieldProps = {
 
 function Field({
   autoCapitalize = 'sentences',
+  error,
   keyboardType = 'default',
   label,
+  onBlur,
   onChangeText,
   returnKeyType = 'next',
   value,
@@ -179,11 +221,13 @@ function Field({
         accessibilityLabel={label}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
+        onBlur={onBlur}
         onChangeText={onChangeText}
         returnKeyType={returnKeyType}
-        style={styles.input}
+        style={[styles.input, error && styles.inputError]}
         value={value}
       />
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );
 }
@@ -211,27 +255,11 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     minWidth: 0,
   },
-  modeSwitcher: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-  },
-  activeModeButton: {
-    borderColor: '#0F766E',
-  },
   keyboardSafeArea: {
     flex: 1,
   },
   keyboardSafeContent: {
     paddingBottom: 40,
-    paddingHorizontal: 20,
-  },
-  fixedContent: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingBottom: 8,
     paddingHorizontal: 20,
   },
   form: {
@@ -257,6 +285,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
+  inputError: {
+    borderColor: '#B91C1C',
+  },
   summaryInput: {
     minHeight: 128,
   },
@@ -265,6 +296,14 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     fontSize: 17,
     fontWeight: '700',
+    lineHeight: 24,
+    minWidth: 0,
+  },
+  successText: {
+    color: '#0F766E',
+    flexShrink: 1,
+    fontSize: 17,
+    fontWeight: '800',
     lineHeight: 24,
     minWidth: 0,
   },
