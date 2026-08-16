@@ -1,5 +1,6 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { StatusBar } from 'expo-status-bar';
+import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 import {
   SectionList,
@@ -109,7 +110,7 @@ function TopBar() {
       <IconButton
         accessibilityLabel="Mở hồ sơ cá nhân"
         iconName="person-outline"
-        onPress={() => undefined}
+        onPress={() => router.push('/profile')}
         shape="circle"
       />
     </View>
@@ -167,7 +168,7 @@ function ProfileAction() {
     <SecondaryButton
       iconName="person-outline"
       label="Xem hồ sơ sinh viên và tiến độ học tập"
-      onPress={() => undefined}
+      onPress={() => router.push('/profile')}
       style={styles.profileButton}
     />
   );
