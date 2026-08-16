@@ -14,8 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconButton } from '@/src/components/IconButton';
 import { SecondaryButton } from '@/src/components/SecondaryButton';
 import { ButtonStateDemo } from '@/src/features/buttons/ButtonStateDemo';
-import { CourseCard } from '@/src/features/courses/CourseCard';
-import { courseImageCases } from '@/src/features/courses/mockCourses';
+import { CourseGrid } from '@/src/features/courses/CourseGrid';
 
 import { AnnouncementRow } from './AnnouncementRow';
 import { announcements } from './announcementData';
@@ -64,9 +63,7 @@ function DashboardHeader() {
       <SearchField />
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Khóa học nổi bật trong học kỳ này</Text>
-        {courseImageCases.map((course) => (
-          <CourseCard course={course} key={course.code} />
-        ))}
+        <CourseGrid />
       </View>
       <View style={styles.announcementsHeader}>
         <Text style={styles.sectionTitle}>Thông báo mới nhất dành cho sinh viên</Text>

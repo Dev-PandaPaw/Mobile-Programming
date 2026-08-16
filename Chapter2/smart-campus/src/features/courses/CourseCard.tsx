@@ -4,8 +4,10 @@ import {
   Image,
   ImageSourcePropType,
   StyleSheet,
+  StyleProp,
   Text,
   View,
+  ViewStyle,
 } from 'react-native';
 
 import { PrimaryButton } from '@/src/components/PrimaryButton';
@@ -35,7 +37,12 @@ export type Course = {
   image: CourseImage;
 };
 
-export function CourseCard({ course }: { course: Course }) {
+type CourseCardProps = {
+  course: Course;
+  style?: StyleProp<ViewStyle>;
+};
+
+export function CourseCard({ course, style }: CourseCardProps) {
   const [isLoading, setIsLoading] = useState(Boolean(course.image.source));
   const [hasImageError, setHasImageError] = useState(false);
   const shouldShowLoadingOnly = course.image.type === 'loading';
@@ -48,7 +55,7 @@ export function CourseCard({ course }: { course: Course }) {
       : undefined;
 
   return (
-    <View style={styles.courseCard}>
+    <View style={[styles.courseCard, style]}>
       <View style={styles.imageFrame}>
         {shouldShowImage ? (
           <Image
@@ -110,7 +117,6 @@ const styles = StyleSheet.create({
   courseCard: {
     borderColor: '#9CA3AF',
     borderWidth: 2,
-    marginBottom: 18,
     padding: 18,
   },
   imageFrame: {
