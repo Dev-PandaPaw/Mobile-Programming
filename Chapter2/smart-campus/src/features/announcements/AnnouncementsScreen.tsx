@@ -2,8 +2,8 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
 import {
-  FlatList,
-  ListRenderItem,
+  SectionList,
+  SectionListRenderItem,
   StyleSheet,
   Text,
   TextInput,
@@ -19,13 +19,14 @@ import { courseImageCases } from '@/src/features/courses/mockCourses';
 
 import { AnnouncementRow } from './AnnouncementRow';
 import { announcements } from './announcementData';
-import { Announcement } from './types';
+import { createAnnouncementSections } from './announcementSections';
+import { Announcement, AnnouncementSection } from './types';
 
 export function AnnouncementsScreen() {
   const [showEmptyState, setShowEmptyState] = useState(false);
-  const announcementData = showEmptyState ? [] : announcements;
+  const sections = showEmptyState ? [] : createAnnouncementSections(announcements);
 
-  const renderAnnouncement = useCallback<ListRenderItem<Announcement>>(
+  const renderAnnouncement = useCallback<SectionListRenderItem<Announcement, AnnouncementSection>>(
     ({ item }) => <AnnouncementRow announcement={item} />,
     [],
   );
@@ -33,7 +34,7 @@ export function AnnouncementsScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
-      <FlatList
+      <SectionList
         ListEmptyComponent={<AnnouncementsEmptyState />}
         ListFooterComponent={
           <DashboardFooter
@@ -44,11 +45,13 @@ export function AnnouncementsScreen() {
         ListHeaderComponent={<DashboardHeader />}
         ItemSeparatorComponent={AnnouncementSeparator}
         contentContainerStyle={styles.content}
-        data={announcementData}
         keyExtractor={(item) => item.id}
         keyboardShouldPersistTaps="handled"
         renderItem={renderAnnouncement}
+        renderSectionHeader={({ section }) => <AnnouncementSectionHeader title={section.title} />}
+        sections={sections}
         showsVerticalScrollIndicator={false}
+        stickySectionHeadersEnabled
       />
     </SafeAreaView>
   );
@@ -83,7 +86,7 @@ function DashboardFooter({
     <>
       <ProfileAction />
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>FlatList controls</Text>
+        <Text style={styles.sectionTitle}>SectionList controls</Text>
         <SecondaryButton
           label={showEmptyState ? 'Khôi phục danh sách thông báo' : 'Xem trạng thái danh sách rỗng'}
           onPress={onToggleEmptyState}
@@ -142,6 +145,14 @@ function SearchField() {
 
 function AnnouncementSeparator() {
   return <View style={styles.separator} />;
+}
+
+function AnnouncementSectionHeader({ title }: { title: string }) {
+  return (
+    <View style={styles.sectionHeader}>
+      <Text style={styles.sectionHeaderText}>{title}</Text>
+    </View>
+  );
 }
 
 function AnnouncementsEmptyState() {
@@ -231,6 +242,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#D1D5DB',
     height: 1,
     marginHorizontal: 20,
+  },
+  sectionHeader: {
+    backgroundColor: '#FFFFFF',
+    borderBottomColor: '#E5E7EB',
+    borderBottomWidth: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  sectionHeaderText: {
+    color: '#0F766E',
+    flexShrink: 1,
+    fontSize: 19,
+    fontWeight: '900',
+    lineHeight: 26,
+    minWidth: 0,
+    textTransform: 'uppercase',
   },
   emptyState: {
     alignItems: 'center',
