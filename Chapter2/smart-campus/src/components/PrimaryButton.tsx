@@ -13,6 +13,7 @@ type IconName = ComponentProps<typeof MaterialIcons>['name'];
 
 type PrimaryButtonProps = {
   label: string;
+  accessibilityHint?: string;
   accessibilityLabel?: string;
   disabled?: boolean;
   iconName?: IconName;
@@ -22,6 +23,7 @@ type PrimaryButtonProps = {
 };
 
 export function PrimaryButton({
+  accessibilityHint,
   label,
   accessibilityLabel,
   disabled = false,
@@ -35,6 +37,7 @@ export function PrimaryButton({
 
   return (
     <Pressable
+      accessibilityHint={accessibilityHint}
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityRole="button"
       accessibilityState={{ busy: loading, disabled: isUnavailable }}
@@ -81,8 +84,8 @@ const styles = StyleSheet.create({
     borderColor: '#2563EB',
   },
   disabled: {
-    backgroundColor: '#9CA3AF',
-    borderColor: '#9CA3AF',
+    backgroundColor: '#4B5563',
+    borderColor: '#4B5563',
   },
   label: {
     color: '#FFFFFF',

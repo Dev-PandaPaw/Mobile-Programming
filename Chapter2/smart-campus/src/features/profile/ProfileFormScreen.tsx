@@ -82,11 +82,12 @@ export function ProfileFormScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.topBar}>
         <IconButton
+          accessibilityHint="Quay lại màn hình dashboard"
           accessibilityLabel="Quay lại SmartCampus Dashboard"
           iconName="arrow-back"
           onPress={() => router.back()}
         />
-        <Text style={styles.headerTitle}>Student Profile Form</Text>
+        <Text accessibilityRole="header" style={styles.headerTitle}>Student Profile Form</Text>
       </View>
 
       <KeyboardAvoidingView
@@ -169,6 +170,7 @@ function ProfileFormFields({
       <View style={styles.fieldGroup}>
         <Text style={styles.fieldLabel}>Profile Summary</Text>
         <TextInput
+          accessibilityHint={getError('summary') ?? 'Tóm tắt tối đa 240 ký tự'}
           accessibilityLabel="Profile Summary"
           multiline
           onBlur={() => onBlur('summary')}
@@ -180,10 +182,19 @@ function ProfileFormFields({
           textAlignVertical="top"
           value={values.summary}
         />
-        {getError('summary') ? <Text style={styles.errorText}>{getError('summary')}</Text> : null}
+        {getError('summary') ? (
+          <Text accessibilityLiveRegion="polite" style={styles.errorText}>
+            {getError('summary')}
+          </Text>
+        ) : null}
       </View>
-      {saved ? <Text style={styles.successText}>Profile saved successfully.</Text> : null}
+      {saved ? (
+        <Text accessibilityLiveRegion="polite" style={styles.successText}>
+          Profile saved successfully.
+        </Text>
+      ) : null}
       <PrimaryButton
+        accessibilityHint="Kiểm tra thông tin và lưu hồ sơ nếu không còn lỗi"
         disabled={saved}
         iconName="check-circle"
         label={saved ? 'Hồ sơ đã được lưu' : 'Lưu hồ sơ sinh viên'}
@@ -218,6 +229,7 @@ function Field({
     <View style={styles.fieldGroup}>
       <Text style={styles.fieldLabel}>{label}</Text>
       <TextInput
+        accessibilityHint={error ?? `Nhập ${label}`}
         accessibilityLabel={label}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
@@ -227,7 +239,11 @@ function Field({
         style={[styles.input, error && styles.inputError]}
         value={value}
       />
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      {error ? (
+        <Text accessibilityLiveRegion="polite" style={styles.errorText}>
+          {error}
+        </Text>
+      ) : null}
     </View>
   );
 }

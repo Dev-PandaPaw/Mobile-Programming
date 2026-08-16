@@ -84,7 +84,12 @@ export function CourseCard({ course, style }: CourseCardProps) {
       <Text style={styles.courseTitle}>{course.title}</Text>
       <Text style={styles.instructor}>{course.instructor}</Text>
       <View style={styles.cardDivider} />
-      <PrimaryButton label={course.actionLabel} onPress={() => undefined} style={styles.courseButton} />
+      <PrimaryButton
+        accessibilityHint={`Mở chi tiết khóa học ${course.code}`}
+        label={course.actionLabel}
+        onPress={() => undefined}
+        style={styles.courseButton}
+      />
     </View>
   );
 }

@@ -63,11 +63,11 @@ function DashboardHeader() {
       <TopBar />
       <SearchField />
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Khóa học nổi bật trong học kỳ này</Text>
+        <Text accessibilityRole="header" style={styles.sectionTitle}>Khóa học nổi bật trong học kỳ này</Text>
         <CourseGrid />
       </View>
       <View style={styles.announcementsHeader}>
-        <Text style={styles.sectionTitle}>Thông báo mới nhất dành cho sinh viên</Text>
+        <Text accessibilityRole="header" style={styles.sectionTitle}>Thông báo mới nhất dành cho sinh viên</Text>
       </View>
     </>
   );
@@ -84,14 +84,15 @@ function DashboardFooter({
     <>
       <ProfileAction />
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>SectionList controls</Text>
+        <Text accessibilityRole="header" style={styles.sectionTitle}>SectionList controls</Text>
         <SecondaryButton
+          accessibilityHint="Chuyển giữa danh sách có dữ liệu và trạng thái rỗng"
           label={showEmptyState ? 'Khôi phục danh sách thông báo' : 'Xem trạng thái danh sách rỗng'}
           onPress={onToggleEmptyState}
         />
       </View>
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Button state system</Text>
+        <Text accessibilityRole="header" style={styles.sectionTitle}>Button state system</Text>
         <ButtonStateDemo />
       </View>
     </>
@@ -102,12 +103,14 @@ function TopBar() {
   return (
     <View style={styles.topBar}>
       <IconButton
+        accessibilityHint="Mở các lựa chọn điều hướng chính"
         accessibilityLabel="Mở menu điều hướng"
         iconName="menu"
         onPress={() => undefined}
       />
-      <Text style={styles.appTitle}>SmartCampus Student Dashboard</Text>
+      <Text accessibilityRole="header" style={styles.appTitle}>SmartCampus Student Dashboard</Text>
       <IconButton
+        accessibilityHint="Mở biểu mẫu hồ sơ sinh viên"
         accessibilityLabel="Mở hồ sơ cá nhân"
         iconName="person-outline"
         onPress={() => router.push('/profile')}
@@ -124,6 +127,7 @@ function SearchField() {
     <View style={styles.searchField}>
       <MaterialIcons color="#6B7280" name="search" size={34} />
       <TextInput
+        accessibilityHint="Nhập từ khóa để tìm thông báo"
         accessibilityLabel="Tìm kiếm thông báo trong SmartCampus"
         onChangeText={setQuery}
         placeholder="Tìm kiếm thông báo, lịch học, bài tập hoặc cập nhật học vụ"
@@ -132,6 +136,7 @@ function SearchField() {
         value={query}
       />
       <IconButton
+        accessibilityHint="Xóa toàn bộ từ khóa tìm kiếm hiện tại"
         accessibilityLabel="Xóa nội dung tìm kiếm"
         disabled={!query}
         iconName="close"
@@ -148,7 +153,7 @@ function AnnouncementSeparator() {
 function AnnouncementSectionHeader({ title }: { title: string }) {
   return (
     <View style={styles.sectionHeader}>
-      <Text style={styles.sectionHeaderText}>{title}</Text>
+      <Text accessibilityRole="header" style={styles.sectionHeaderText}>{title}</Text>
     </View>
   );
 }
@@ -166,6 +171,7 @@ function AnnouncementsEmptyState() {
 function ProfileAction() {
   return (
     <SecondaryButton
+      accessibilityHint="Mở biểu mẫu hồ sơ sinh viên"
       iconName="person-outline"
       label="Xem hồ sơ sinh viên và tiến độ học tập"
       onPress={() => router.push('/profile')}

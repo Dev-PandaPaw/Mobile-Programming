@@ -16,6 +16,7 @@ const categoryLabels: Record<Announcement['category'], string> = {
 export function AnnouncementRow({ announcement }: AnnouncementRowProps) {
   return (
     <Pressable
+      accessibilityHint="Mở chi tiết thông báo"
       accessibilityLabel={`${categoryLabels[announcement.category]}. ${announcement.title}`}
       accessibilityRole="button"
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
@@ -25,7 +26,13 @@ export function AnnouncementRow({ announcement }: AnnouncementRowProps) {
         <Text style={styles.summary}>{announcement.summary}</Text>
         <Text style={styles.time}>{announcement.publishedAt}</Text>
       </View>
-      <MaterialIcons color="#6B7280" name="chevron-right" size={36} />
+      <MaterialIcons
+        accessible={false}
+        color="#6B7280"
+        importantForAccessibility="no"
+        name="chevron-right"
+        size={36}
+      />
     </Pressable>
   );
 }
@@ -36,6 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     marginHorizontal: 20,
+    minHeight: 72,
     paddingBottom: 24,
     paddingTop: 24,
   },

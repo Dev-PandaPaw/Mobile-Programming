@@ -5,6 +5,7 @@ import { ActivityIndicator, Pressable, StyleProp, StyleSheet, ViewStyle } from '
 type IconName = ComponentProps<typeof MaterialIcons>['name'];
 
 type IconButtonProps = {
+  accessibilityHint?: string;
   accessibilityLabel: string;
   disabled?: boolean;
   iconName: IconName;
@@ -15,6 +16,7 @@ type IconButtonProps = {
 };
 
 export function IconButton({
+  accessibilityHint,
   accessibilityLabel,
   disabled = false,
   iconName,
@@ -28,6 +30,7 @@ export function IconButton({
 
   return (
     <Pressable
+      accessibilityHint={accessibilityHint}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
       accessibilityState={{ busy: loading, disabled: isUnavailable }}

@@ -13,6 +13,7 @@ type IconName = ComponentProps<typeof MaterialIcons>['name'];
 
 type SecondaryButtonProps = {
   label: string;
+  accessibilityHint?: string;
   accessibilityLabel?: string;
   disabled?: boolean;
   iconName?: IconName;
@@ -22,6 +23,7 @@ type SecondaryButtonProps = {
 };
 
 export function SecondaryButton({
+  accessibilityHint,
   label,
   accessibilityLabel,
   disabled = false,
@@ -35,6 +37,7 @@ export function SecondaryButton({
 
   return (
     <Pressable
+      accessibilityHint={accessibilityHint}
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityRole="button"
       accessibilityState={{ busy: loading, disabled: isUnavailable }}
@@ -94,6 +97,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   disabledLabel: {
-    color: '#6B7280',
+    color: '#374151',
   },
 });
