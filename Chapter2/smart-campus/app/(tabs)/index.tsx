@@ -1,8 +1,12 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { IconButton } from '@/src/components/IconButton';
+import { SecondaryButton } from '@/src/components/SecondaryButton';
+import { ButtonStateDemo } from '@/src/features/buttons/ButtonStateDemo';
 import { CourseCard } from '@/src/features/courses/CourseCard';
 import { courseImageCases } from '@/src/features/courses/mockCourses';
 
@@ -68,6 +72,10 @@ export default function HomeScreen() {
           ))}
         </View>
         <ProfileAction />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Button state system</Text>
+          <ButtonStateDemo />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -76,29 +84,41 @@ export default function HomeScreen() {
 function TopBar() {
   return (
     <View style={styles.topBar}>
-      <Pressable accessibilityLabel="Mở menu điều hướng" accessibilityRole="button" style={styles.iconButton}>
-        <MaterialIcons color="#4B5563" name="menu" size={36} />
-      </Pressable>
+      <IconButton
+        accessibilityLabel="Mở menu điều hướng"
+        iconName="menu"
+        onPress={() => undefined}
+      />
       <Text style={styles.appTitle}>SmartCampus Student Dashboard</Text>
-      <Pressable
+      <IconButton
         accessibilityLabel="Mở hồ sơ cá nhân"
-        accessibilityRole="button"
-        style={styles.avatarButton}>
-        <MaterialIcons color="#6B7280" name="person-outline" size={32} />
-      </Pressable>
+        iconName="person-outline"
+        onPress={() => undefined}
+        shape="circle"
+      />
     </View>
   );
 }
 
 function SearchField() {
+  const [query, setQuery] = useState('');
+
   return (
     <View style={styles.searchField}>
       <MaterialIcons color="#6B7280" name="search" size={34} />
       <TextInput
         accessibilityLabel="Tìm kiếm thông báo trong SmartCampus"
+        onChangeText={setQuery}
         placeholder="Tìm kiếm thông báo, lịch học, bài tập hoặc cập nhật học vụ"
         placeholderTextColor="#6B7280"
         style={styles.searchInput}
+        value={query}
+      />
+      <IconButton
+        accessibilityLabel="Xóa nội dung tìm kiếm"
+        disabled={!query}
+        iconName="close"
+        onPress={() => setQuery('')}
       />
     </View>
   );
@@ -129,10 +149,12 @@ function AnnouncementRow({
 
 function ProfileAction() {
   return (
-    <Pressable accessibilityRole="button" style={styles.profileButton}>
-      <Text style={styles.profileButtonText}>Xem hồ sơ sinh viên và tiến độ học tập</Text>
-      <MaterialIcons color="#111827" name="person-outline" size={32} />
-    </Pressable>
+    <SecondaryButton
+      iconName="person-outline"
+      label="Xem hồ sơ sinh viên và tiến độ học tập"
+      onPress={() => undefined}
+      style={styles.profileButton}
+    />
   );
 }
 
@@ -153,12 +175,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 14,
   },
-  iconButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 48,
-    minWidth: 48,
-  },
   appTitle: {
     color: '#000000',
     flex: 1,
@@ -167,15 +183,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 34,
     minWidth: 0,
-  },
-  avatarButton: {
-    alignItems: 'center',
-    borderColor: '#9CA3AF',
-    borderRadius: 28,
-    borderWidth: 3,
-    justifyContent: 'center',
-    minHeight: 56,
-    minWidth: 56,
   },
   searchField: {
     alignItems: 'center',
@@ -259,26 +266,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   profileButton: {
-    alignItems: 'center',
-    backgroundColor: '#E5E7EB',
-    borderColor: '#111827',
-    borderWidth: 3,
-    flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'center',
     marginHorizontal: 20,
     marginTop: 44,
-    minHeight: 66,
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-  },
-  profileButtonText: {
-    color: '#000000',
-    flexShrink: 1,
-    fontSize: 22,
-    fontWeight: '800',
-    lineHeight: 29,
-    minWidth: 0,
-    textAlign: 'center',
   },
 });

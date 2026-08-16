@@ -3,11 +3,12 @@ import { useState } from 'react';
 import {
   Image,
   ImageSourcePropType,
-  Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+
+import { PrimaryButton } from '@/src/components/PrimaryButton';
 
 export type CourseImage =
   | {
@@ -76,9 +77,7 @@ export function CourseCard({ course }: { course: Course }) {
       <Text style={styles.courseTitle}>{course.title}</Text>
       <Text style={styles.instructor}>{course.instructor}</Text>
       <View style={styles.cardDivider} />
-      <Pressable accessibilityRole="button" onPress={() => undefined} style={styles.courseButton}>
-        <Text style={styles.courseButtonLabel}>{course.actionLabel}</Text>
-      </Pressable>
+      <PrimaryButton label={course.actionLabel} onPress={() => undefined} style={styles.courseButton} />
     </View>
   );
 }
@@ -196,24 +195,8 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   courseButton: {
-    alignItems: 'center',
     alignSelf: 'flex-end',
-    backgroundColor: '#E5E7EB',
-    borderColor: '#111827',
-    borderWidth: 3,
-    justifyContent: 'center',
     marginTop: 18,
     maxWidth: '100%',
-    minHeight: 56,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-  },
-  courseButtonLabel: {
-    color: '#000000',
-    flexShrink: 1,
-    fontSize: 20,
-    fontWeight: '800',
-    lineHeight: 26,
-    textAlign: 'center',
   },
 });
