@@ -3,12 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type Course = {
-  code: string;
-  title: string;
-  instructor: string;
-  actionLabel: string;
-};
+import { CourseCard } from '@/src/features/courses/CourseCard';
+import { courseImageCases } from '@/src/features/courses/mockCourses';
 
 type Announcement = {
   id: string;
@@ -16,13 +12,6 @@ type Announcement = {
   title: string;
   summary: string;
   time: string;
-};
-
-const featuredCourse: Course = {
-  code: 'CS-301',
-  title: 'Lập trình ứng dụng di động đa nền tảng với React Native và TypeScript',
-  instructor: 'Giảng viên phụ trách: Prof. Alan Turing và nhóm trợ giảng thực hành',
-  actionLabel: 'Mở không gian học tập của môn học',
 };
 
 const announcements: Announcement[] = [
@@ -62,7 +51,12 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}>
         <TopBar />
         <SearchField />
-        <CourseCard course={featuredCourse} />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Khóa học nổi bật trong học kỳ này</Text>
+          {courseImageCases.map((course) => (
+            <CourseCard course={course} key={course.code} />
+          ))}
+        </View>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Thông báo mới nhất dành cho sinh viên</Text>
           {announcements.map((announcement, index) => (
@@ -106,27 +100,6 @@ function SearchField() {
         placeholderTextColor="#6B7280"
         style={styles.searchInput}
       />
-    </View>
-  );
-}
-
-function CourseCard({ course }: { course: Course }) {
-  return (
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>Khóa học nổi bật trong học kỳ này</Text>
-      <View style={styles.courseCard}>
-        <View accessibilityLabel="Ảnh minh họa khóa học" style={styles.imagePlaceholder}>
-          <View style={[styles.crossLine, styles.crossLineForward]} />
-          <View style={[styles.crossLine, styles.crossLineBackward]} />
-        </View>
-        <Text style={styles.courseCode}>{course.code}</Text>
-        <Text style={styles.courseTitle}>{course.title}</Text>
-        <Text style={styles.instructor}>{course.instructor}</Text>
-        <View style={styles.cardDivider} />
-        <Pressable accessibilityRole="button" style={styles.courseButton}>
-          <Text style={styles.courseButtonLabel}>{course.actionLabel}</Text>
-        </Pressable>
-      </View>
     </View>
   );
 }
@@ -235,84 +208,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 34,
     marginBottom: 18,
-  },
-  courseCard: {
-    borderColor: '#9CA3AF',
-    borderWidth: 2,
-    padding: 18,
-  },
-  imagePlaceholder: {
-    aspectRatio: 2.55,
-    backgroundColor: '#F4F5F7',
-    borderColor: '#D1D5DB',
-    borderWidth: 2,
-    overflow: 'hidden',
-    width: '100%',
-  },
-  crossLine: {
-    backgroundColor: '#AEB5BF',
-    height: 3,
-    left: '-12%',
-    position: 'absolute',
-    top: '50%',
-    width: '124%',
-  },
-  crossLineForward: {
-    transform: [{ rotate: '21deg' }],
-  },
-  crossLineBackward: {
-    transform: [{ rotate: '-21deg' }],
-  },
-  courseCode: {
-    color: '#6B7280',
-    fontSize: 19,
-    fontWeight: '700',
-    letterSpacing: 0,
-    lineHeight: 28,
-    marginTop: 22,
-  },
-  courseTitle: {
-    color: '#000000',
-    flexShrink: 1,
-    fontSize: 28,
-    fontWeight: '800',
-    lineHeight: 36,
-    marginTop: 8,
-    minWidth: 0,
-  },
-  instructor: {
-    color: '#4B5563',
-    flexShrink: 1,
-    fontSize: 22,
-    lineHeight: 30,
-    marginTop: 12,
-    minWidth: 0,
-  },
-  cardDivider: {
-    backgroundColor: '#D1D5DB',
-    height: 1,
-    marginTop: 24,
-  },
-  courseButton: {
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    backgroundColor: '#E5E7EB',
-    borderColor: '#111827',
-    borderWidth: 3,
-    justifyContent: 'center',
-    marginTop: 18,
-    maxWidth: '100%',
-    minHeight: 56,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-  },
-  courseButtonLabel: {
-    color: '#000000',
-    flexShrink: 1,
-    fontSize: 20,
-    fontWeight: '800',
-    lineHeight: 26,
-    textAlign: 'center',
   },
   announcementRow: {
     alignItems: 'center',
