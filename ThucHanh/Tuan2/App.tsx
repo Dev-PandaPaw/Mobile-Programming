@@ -1,10 +1,10 @@
-import { SafeAreaView, StyleSheet } from 'react-native';
-import CourseListScreen from './Bai1/CourseListScreen';
+import { Platform, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import StudentDirectoryScreen from "./Bai2/StudentDirectoryScreen";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <CourseListScreen />
+      <StudentDirectoryScreen />
     </SafeAreaView>
   );
 }
@@ -12,8 +12,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight || 24 : 0,
   },
 });
-
-
