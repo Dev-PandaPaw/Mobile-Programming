@@ -1,0 +1,482 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Nguyễn Văn An",
+      "email": "an@gmail.com",
+      "password": "$2a$10$pDEa13HpLHUEnHXVKrzu4.wsRemAMTMCSW2j96iRhx2EhjKk/v0P2"
+    },
+    {
+      "id": 2,
+      "name": "Trần Thị Bình",
+      "email": "binh@gmail.com",
+      "password": "$2a$10$pDEa13HpLHUEnHXVKrzu4.wsRemAMTMCSW2j96iRhx2EhjKk/v0P2"
+    },
+    {
+      "id": 3,
+      "name": "Lê Văn Châu",
+      "email": "chau@gmail.com",
+      "password": "$2a$10$pDEa13HpLHUEnHXVKrzu4.wsRemAMTMCSW2j96iRhx2EhjKk/v0P2"
+    },
+    {
+      "id": 4,
+      "name": "Tài khoản Test",
+      "email": "test@gmail.com",
+      "password": "$2a$10$pDEa13HpLHUEnHXVKrzu4.wsRemAMTMCSW2j96iRhx2EhjKk/v0P2"
+    },
+    {
+      "email": "canh@gmail.com",
+      "password": "$2a$10$/ZJpHZeMnmE.nc87RkBoouMn.eND5l.xJAbVK/dq9dfJc211qcQni",
+      "name": "VO VAN CANH",
+      "id": 5
+    },
+    {
+      "email": "canh1223@gmail.com",
+      "password": "$2a$10$qziOlQRjm7XeTQn44PeNbeDJEIkbN2OZJY95y3cx3WBosLenh/iYy",
+      "name": "vovancanh",
+      "id": 6
+    },
+    {
+      "email": "canh123@gmail.com",
+      "password": "$2a$10$PniwoOAU41/BiKgWmsm.P.w5NlIe.UqrQ1G0epapJldlniBC5nDZW",
+      "name": "VO VAN CANH",
+      "id": 7
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Dế Mèn Phiêu Lưu Ký",
+      "author": "Tô Hoài",
+      "category": "Văn học",
+      "price": 45000,
+      "image": "https://picsum.photos/seed/book1/300/450",
+      "description": "Dế Mèn Phiêu Lưu Ký của Tô Hoài, một cuốn sách thuộc thể loại văn học được nhiều bạn đọc yêu thích."
+    },
+    {
+      "id": 2,
+      "title": "Số Đỏ",
+      "author": "Vũ Trọng Phụng",
+      "category": "Văn học",
+      "price": 65000,
+      "image": "https://picsum.photos/seed/book2/300/450",
+      "description": "Tiểu thuyết trào phúng kinh điển phê phán xã hội thượng lưu thời vụ thời Pháp thuộc."
+    },
+    {
+      "id": 3,
+      "title": "Tắt Đèn",
+      "author": "Ngô Tất Tố",
+      "category": "Văn học",
+      "price": 50000,
+      "image": "https://picsum.photos/seed/book3/300/450",
+      "description": "Tác phẩm phản ánh chân thực số phận người nông dân Việt Nam thời phong kiến qua hình tượng chị Dậu."
+    },
+    {
+      "id": 4,
+      "title": "Lão Hạc",
+      "author": "Nam Cao",
+      "category": "Văn học",
+      "price": 42000,
+      "image": "https://picsum.photos/seed/book4/300/450",
+      "description": "Truyện ngắn đầy nhân đạo về lòng tự trọng và tình cha con sâu sắc của lão nông nghèo khổ."
+    },
+    {
+      "id": 5,
+      "title": "Đất Rừng Phương Nam",
+      "author": "Đoàn Giỏi",
+      "category": "Văn học",
+      "price": 75000,
+      "image": "https://picsum.photos/seed/book5/300/450",
+      "description": "Hành trình phiêu lưu kỳ thú của cậu bé An giữa thiên nhiên Nam Bộ trù phú và hào hiệp."
+    },
+    {
+      "id": 6,
+      "title": "Đắc Nhân Tâm",
+      "author": "Dale Carnegie",
+      "category": "Kỹ năng",
+      "price": 85000,
+      "image": "https://picsum.photos/seed/book6/300/450",
+      "description": "Nghệ thuật giao tiếp và đối nhân xử thế kinh điển, giúp kết nối và thu phục lòng người."
+    },
+    {
+      "id": 7,
+      "title": "Quẳng Gánh Lo Đi Và Vui Sống",
+      "author": "Dale Carnegie",
+      "category": "Kỹ năng",
+      "price": 82000,
+      "image": "https://picsum.photos/seed/book7/300/450",
+      "description": "Những phương pháp thực tế giúp đẩy lùi lo âu, tận hưởng cuộc sống thanh thản mỗi ngày."
+    },
+    {
+      "id": 8,
+      "title": "Tư Duy Nhanh Và Chậm",
+      "author": "Daniel Kahneman",
+      "category": "Kỹ năng",
+      "price": 150000,
+      "image": "https://picsum.photos/seed/book8/300/450",
+      "description": "Khám phá hai hệ thống tư duy chi phối mọi quyết định và phán đoán của con người."
+    },
+    {
+      "id": 9,
+      "title": "Thói Quen Nguyên Tử",
+      "author": "James Clear",
+      "category": "Kỹ năng",
+      "price": 125000,
+      "image": "https://picsum.photos/seed/book9/300/450",
+      "description": "Phương pháp xây dựng thói quen tốt và từ bỏ thói quen xấu từ những thay đổi nhỏ nhất."
+    },
+    {
+      "id": 10,
+      "title": "Sức Mạnh Của Thói Quen",
+      "author": "Charles Duhigg",
+      "category": "Kỹ năng",
+      "price": 110000,
+      "image": "https://picsum.photos/seed/book10/300/450",
+      "description": "Vòng lặp thói quen và cách thức tái thiết lập hành vi để thành công trong cuộc việc và đời sống."
+    },
+    {
+      "id": 11,
+      "title": "Lập Trình React Native Thực Chiến",
+      "author": "Nguyễn Hoàng Nam",
+      "category": "Công nghệ",
+      "price": 180000,
+      "image": "https://picsum.photos/seed/book11/300/450",
+      "description": "Cẩm nang toàn diện xây dựng ứng dụng di động đa nền tảng hiện đại với React Native và Expo."
+    },
+    {
+      "id": 12,
+      "title": "Nhập Môn TypeScript",
+      "author": "Boris Cherny",
+      "category": "Công nghệ",
+      "price": 160000,
+      "image": "https://picsum.photos/seed/book12/300/450",
+      "description": "Nắm vững hệ thống kiểu dữ liệu tĩnh mạnh mẽ để xây dựng ứng dụng quy mô lớn tin cậy."
+    },
+    {
+      "id": 13,
+      "title": "Clean Code - Mã Sạch",
+      "author": "Robert C. Martin",
+      "category": "Công nghệ",
+      "price": 195000,
+      "image": "https://picsum.photos/seed/book13/300/450",
+      "description": "Quy tắc và chuẩn mực viết mã dễ đọc, dễ kiểm thử và dễ bảo trì cho lập trình viên chuyên nghiệp."
+    },
+    {
+      "id": 14,
+      "title": "Thiết Kế Hệ Thống Lớn",
+      "author": "Alex Xu",
+      "category": "Công nghệ",
+      "price": 220000,
+      "image": "https://picsum.photos/seed/book14/300/450",
+      "description": "Hướng dẫn chi tiết từng bước phỏng vấn thiết kế hệ thống phân tán phục vụ hàng triệu người dùng."
+    },
+    {
+      "id": 15,
+      "title": "Trí Tuệ Nhân Tạo & Deep Learning",
+      "author": "Ian Goodfellow",
+      "category": "Công nghệ",
+      "price": 250000,
+      "image": "https://picsum.photos/seed/book15/300/450",
+      "description": "Nền tảng toán học và các kiến trúc mạng nơ-ron tiên tiến nhất trong lĩnh vực học sâu."
+    },
+    {
+      "id": 16,
+      "title": "Cha Giàu Cha Nghèo",
+      "author": "Robert Kiyosaki",
+      "category": "Kinh tế",
+      "price": 95000,
+      "image": "https://picsum.photos/seed/book16/300/450",
+      "description": "Tư duy tài chính đột phá về tài sản, tiêu sản và con đường tự do tài chính bền vững."
+    },
+    {
+      "id": 17,
+      "title": "Tâm Lý Học Về Tiền",
+      "author": "Morgan Housel",
+      "category": "Kinh tế",
+      "price": 135000,
+      "image": "https://picsum.photos/seed/book17/300/450",
+      "description": "Những bài học muôn đời về sự giàu có, lòng tham và hạnh phúc qua góc nhìn tâm lý học."
+    },
+    {
+      "id": 18,
+      "title": "Nhà Đầu Tư Thông Minh",
+      "author": "Benjamin Graham",
+      "category": "Kinh tế",
+      "price": 210000,
+      "image": "https://picsum.photos/seed/book18/300/450",
+      "description": "Cuốn kinh thánh về triết lý đầu tư giá trị và biên an toàn dành cho mọi nhà đầu tư chứng khoán."
+    },
+    {
+      "id": 19,
+      "title": "Khởi Nghiệp Tinh Gọn",
+      "author": "Eric Ries",
+      "category": "Kinh tế",
+      "price": 115000,
+      "image": "https://picsum.photos/seed/book19/300/450",
+      "description": "Mô hình phát triển sản phẩm tối thiểu (MVP) và kiểm chứng thị trường nhanh chóng, tiết kiệm."
+    },
+    {
+      "id": 20,
+      "title": "Kinh Tế Học Hài Hước",
+      "author": "Steven Levitt & Stephen Dubner",
+      "category": "Kinh tế",
+      "price": 105000,
+      "image": "https://picsum.photos/seed/book20/300/450",
+      "description": "Khám phá thế giới ngầm và những hiện tượng kỳ thú dưới lăng kính kinh tế học ứng dụng."
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 2,
+      "comment": "Hơi khó đọc với mình.",
+      "createdAt": "2026-10-03T09:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "bookId": 1,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 5,
+      "comment": "Tuyệt vời, mình đọc 2 lần rồi.",
+      "createdAt": "2026-10-02T09:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "bookId": 3,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 5,
+      "comment": "Tác phẩm quá chân thực và xúc động.",
+      "createdAt": "2026-10-01T08:30:00.000Z"
+    },
+    {
+      "id": 4,
+      "bookId": 6,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 5,
+      "comment": "Cuốn sách gối đầu giường về nghệ thuật sống.",
+      "createdAt": "2026-10-04T10:15:00.000Z"
+    },
+    {
+      "id": 5,
+      "bookId": 6,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 4,
+      "comment": "Rất hữu ích cho người làm việc nhóm.",
+      "createdAt": "2026-10-05T14:20:00.000Z"
+    },
+    {
+      "id": 6,
+      "bookId": 8,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 4,
+      "comment": "Kiến thức hàn lâm sâu sắc, cần đọc chậm suy ngẫm.",
+      "createdAt": "2026-10-06T11:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "bookId": 9,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Cực kỳ thực tế, áp dụng được ngay vào cuộc sống.",
+      "createdAt": "2026-10-07T16:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "bookId": 11,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 5,
+      "comment": "Cuốn sách React Native hay nhất bằng tiếng Việt!",
+      "createdAt": "2026-10-10T12:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "bookId": 11,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 4,
+      "comment": "Hướng dẫn chi tiết từ căn bản đến nâng cao.",
+      "createdAt": "2026-10-09T08:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "bookId": 11,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 5,
+      "comment": "Rất thích phần Redux Toolkit và async storage.",
+      "createdAt": "2026-10-08T07:00:00.000Z"
+    },
+    {
+      "id": 11,
+      "bookId": 12,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 4,
+      "comment": "Giải thích type system rất rõ ràng.",
+      "createdAt": "2026-10-11T13:30:00.000Z"
+    },
+    {
+      "id": 12,
+      "bookId": 13,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 5,
+      "comment": "Lập trình viên nào cũng nên đọc ít nhất một lần.",
+      "createdAt": "2026-10-12T09:45:00.000Z"
+    },
+    {
+      "id": 13,
+      "bookId": 14,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 5,
+      "comment": "Sách cực kỳ giá trị để chuẩn bị phỏng vấn.",
+      "createdAt": "2026-10-13T15:10:00.000Z"
+    },
+    {
+      "id": 14,
+      "bookId": 16,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 4,
+      "comment": "Thay đổi hoàn toàn tư duy của mình về tiền bạc.",
+      "createdAt": "2026-10-14T10:00:00.000Z"
+    },
+    {
+      "id": 15,
+      "bookId": 17,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Cách viết lôi cuốn, ví dụ rất gần gũi.",
+      "createdAt": "2026-10-15T14:00:00.000Z"
+    },
+    {
+      "id": 16,
+      "bookId": 18,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 4,
+      "comment": "Đầu tư giá trị muôn đời đúng đắn.",
+      "createdAt": "2026-10-16T11:20:00.000Z"
+    },
+    {
+      "id": 17,
+      "bookId": 19,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 5,
+      "comment": "Tuyệt vời cho ai ấp ủ dự án khởi nghiệp.",
+      "createdAt": "2026-10-17T08:15:00.000Z"
+    },
+    {
+      "id": 18,
+      "bookId": 20,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 4,
+      "comment": "Các góc nhìn rất bất ngờ và thú vị.",
+      "createdAt": "2026-10-18T16:40:00.000Z"
+    },
+    {
+      "id": 19,
+      "bookId": 2,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Văn phong trào phúng đỉnh cao của Vũ Trọng Phụng.",
+      "createdAt": "2026-10-19T09:10:00.000Z"
+    },
+    {
+      "id": 20,
+      "bookId": 4,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 5,
+      "comment": "Đọc lại lần nào cũng rơi nước mắt.",
+      "createdAt": "2026-10-20T10:00:00.000Z"
+    },
+    {
+      "id": 21,
+      "bookId": 5,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 4,
+      "comment": "Miêu tả cảnh thiên nhiên sông nước rất sinh động.",
+      "createdAt": "2026-10-21T11:30:00.000Z"
+    },
+    {
+      "id": 22,
+      "bookId": 7,
+      "userId": 3,
+      "userName": "Lê Văn Châu",
+      "rating": 4,
+      "comment": "Giúp giải tỏa căng thẳng rất nhiều.",
+      "createdAt": "2026-10-22T13:45:00.000Z"
+    },
+    {
+      "id": 23,
+      "bookId": 10,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Nghiên cứu khoa học kỹ lưỡng về thói quen con người.",
+      "createdAt": "2026-10-23T15:20:00.000Z"
+    },
+    {
+      "id": 24,
+      "bookId": 15,
+      "userId": 1,
+      "userName": "Nguyễn Văn An",
+      "rating": 5,
+      "comment": "Sách kinh điển dành cho dân làm AI.",
+      "createdAt": "2026-10-24T17:00:00.000Z"
+    },
+    {
+      "id": 25,
+      "bookId": 17,
+      "userId": 2,
+      "userName": "Trần Thị Bình",
+      "rating": 5,
+      "comment": "Một trong những cuốn sách tài chính đáng đọc nhất.",
+      "createdAt": "2026-10-25T14:00:00.000Z"
+    },
+    {
+      "bookId": 1,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Sách rất hay, bài học thực tế sâu sắc!",
+      "createdAt": "2026-10-26T20:00:00.000Z",
+      "id": 26
+    },
+    {
+      "bookId": 8,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 4,
+      "comment": "Hay quá",
+      "createdAt": "2026-10-26T13:10:29.133Z",
+      "id": 27
+    },
+    {
+      "bookId": 8,
+      "userId": 4,
+      "userName": "Tài khoản Test",
+      "rating": 5,
+      "comment": "Sách Tư Duy Nhanh Và Chậm cực kỳ hay và bổ ích!",
+      "createdAt": "2026-10-26T20:15:00.000Z",
+      "id": 28
+    }
+  ]
+}
